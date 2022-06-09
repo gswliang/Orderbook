@@ -1,6 +1,8 @@
 import React from "react";
+import "./quote.css";
 
 const Quote = () => {
+  // replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   return (
     <div className="quote">
       <table>
@@ -9,11 +11,6 @@ const Quote = () => {
             <th>Price(USD)</th>
             <th>Size</th>
             <th>Total</th>
-          </tr>
-          <tr>
-            <td>55500</td>
-            <td>12</td>
-            <td>909</td>
           </tr>
         </thead>
       </table>
