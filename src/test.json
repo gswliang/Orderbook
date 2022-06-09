@@ -1,0 +1,363 @@
+{
+  "topic": "orderBook",
+  "data": {
+    "buyQuote": [
+      {
+        "price": "30046.0",
+        "size": "221",
+        "culmulativeTotal": "221"
+      },
+      {
+        "price": "30044.5",
+        "size": "205",
+        "culmulativeTotal": "426"
+      },
+      {
+        "price": "30043.5",
+        "size": "199",
+        "culmulativeTotal": "625"
+      },
+      {
+        "price": "30038.0",
+        "size": "40",
+        "culmulativeTotal": "665"
+      },
+      {
+        "price": "30036.5",
+        "size": "836",
+        "culmulativeTotal": "1501"
+      },
+      {
+        "price": "30036.0",
+        "size": "575",
+        "culmulativeTotal": "2076"
+      },
+      {
+        "price": "30032.5",
+        "size": "2674",
+        "culmulativeTotal": "4750"
+      },
+      {
+        "price": "30031.0",
+        "size": "940",
+        "culmulativeTotal": "5690"
+      },
+      {
+        "price": "30014.5",
+        "size": "333",
+        "culmulativeTotal": "6022"
+      },
+      {
+        "price": "30010.5",
+        "size": "579",
+        "culmulativeTotal": "6602"
+      },
+      {
+        "price": "30008.5",
+        "size": "2662",
+        "culmulativeTotal": "9264"
+      },
+      {
+        "price": "30005.0",
+        "size": "3205",
+        "culmulativeTotal": "12468"
+      },
+      {
+        "price": "29993.5",
+        "size": "525",
+        "culmulativeTotal": "12993"
+      },
+      {
+        "price": "29993.0",
+        "size": "500",
+        "culmulativeTotal": "13493"
+      },
+      {
+        "price": "29992.5",
+        "size": "669",
+        "culmulativeTotal": "14162"
+      },
+      {
+        "price": "29991.0",
+        "size": "1454",
+        "culmulativeTotal": "15617"
+      },
+      {
+        "price": "29989.5",
+        "size": "890",
+        "culmulativeTotal": "16507"
+      },
+      {
+        "price": "29988.0",
+        "size": "2798",
+        "culmulativeTotal": "19304"
+      },
+      {
+        "price": "29986.0",
+        "size": "1008",
+        "culmulativeTotal": "20313"
+      },
+      {
+        "price": "29982.0",
+        "size": "1060",
+        "culmulativeTotal": "21373"
+      },
+      {
+        "price": "29980.5",
+        "size": "449",
+        "culmulativeTotal": "21823"
+      },
+      {
+        "price": "29978.5",
+        "size": "14306",
+        "culmulativeTotal": "36129"
+      },
+      {
+        "price": "29976.0",
+        "size": "952",
+        "culmulativeTotal": "37081"
+      },
+      {
+        "price": "29974.5",
+        "size": "1773",
+        "culmulativeTotal": "38854"
+      },
+      {
+        "price": "29972.5",
+        "size": "1795",
+        "culmulativeTotal": "40649"
+      },
+      {
+        "price": "29971.0",
+        "size": "1995",
+        "culmulativeTotal": "42644"
+      },
+      {
+        "price": "29970.0",
+        "size": "1461",
+        "culmulativeTotal": "44105"
+      },
+      {
+        "price": "29968.0",
+        "size": "2866",
+        "culmulativeTotal": "46971"
+      },
+      {
+        "price": "29967.0",
+        "size": "4347",
+        "culmulativeTotal": "51318"
+      },
+      {
+        "price": "29963.5",
+        "size": "2418",
+        "culmulativeTotal": "53736"
+      },
+      {
+        "price": "29962.5",
+        "size": "2797",
+        "culmulativeTotal": "56532"
+      },
+      {
+        "price": "29959.5",
+        "size": "2687",
+        "culmulativeTotal": "59219"
+      },
+      {
+        "price": "29959.0",
+        "size": "285",
+        "culmulativeTotal": "59504"
+      },
+      {
+        "price": "29958.0",
+        "size": "2887",
+        "culmulativeTotal": "62391"
+      },
+      {
+        "price": "29956.0",
+        "size": "3235",
+        "culmulativeTotal": "65627"
+      }
+    ],
+    "sellQuote": [
+      {
+        "price": "30139.0",
+        "size": "3270",
+        "culmulativeTotal": "62415"
+      },
+      {
+        "price": "30138.0",
+        "size": "469",
+        "culmulativeTotal": "59145"
+      },
+      {
+        "price": "30137.5",
+        "size": "2761",
+        "culmulativeTotal": "58675"
+      },
+      {
+        "price": "30134.5",
+        "size": "2490",
+        "culmulativeTotal": "55914"
+      },
+      {
+        "price": "30134.0",
+        "size": "2975",
+        "culmulativeTotal": "53424"
+      },
+      {
+        "price": "30130.0",
+        "size": "4435",
+        "culmulativeTotal": "50449"
+      },
+      {
+        "price": "30129.5",
+        "size": "2664",
+        "culmulativeTotal": "46014"
+      },
+      {
+        "price": "30127.0",
+        "size": "1409",
+        "culmulativeTotal": "43350"
+      },
+      {
+        "price": "30126.5",
+        "size": "2152",
+        "culmulativeTotal": "41941"
+      },
+      {
+        "price": "30125.5",
+        "size": "1281",
+        "culmulativeTotal": "39789"
+      },
+      {
+        "price": "30124.0",
+        "size": "694",
+        "culmulativeTotal": "38508"
+      },
+      {
+        "price": "30122.5",
+        "size": "1646",
+        "culmulativeTotal": "37814"
+      },
+      {
+        "price": "30122.0",
+        "size": "500",
+        "culmulativeTotal": "36168"
+      },
+      {
+        "price": "30121.0",
+        "size": "1205",
+        "culmulativeTotal": "35668"
+      },
+      {
+        "price": "30119.0",
+        "size": "1623",
+        "culmulativeTotal": "34463"
+      },
+      {
+        "price": "30116.5",
+        "size": "157",
+        "culmulativeTotal": "32840"
+      },
+      {
+        "price": "30115.0",
+        "size": "1732",
+        "culmulativeTotal": "32683"
+      },
+      {
+        "price": "30111.5",
+        "size": "636",
+        "culmulativeTotal": "30951"
+      },
+      {
+        "price": "30107.5",
+        "size": "547",
+        "culmulativeTotal": "30316"
+      },
+      {
+        "price": "30104.0",
+        "size": "543",
+        "culmulativeTotal": "29768"
+      },
+      {
+        "price": "30100.0",
+        "size": "536",
+        "culmulativeTotal": "29226"
+      },
+      {
+        "price": "30098.5",
+        "size": "687",
+        "culmulativeTotal": "28690"
+      },
+      {
+        "price": "30098.0",
+        "size": "14306",
+        "culmulativeTotal": "28003"
+      },
+      {
+        "price": "30090.5",
+        "size": "53",
+        "culmulativeTotal": "13697"
+      },
+      {
+        "price": "30090.0",
+        "size": "836",
+        "culmulativeTotal": "13644"
+      },
+      {
+        "price": "30083.5",
+        "size": "214",
+        "culmulativeTotal": "12808"
+      },
+      {
+        "price": "30073.0",
+        "size": "3205",
+        "culmulativeTotal": "12594"
+      },
+      {
+        "price": "30068.5",
+        "size": "40",
+        "culmulativeTotal": "9389"
+      },
+      {
+        "price": "30068.0",
+        "size": "2662",
+        "culmulativeTotal": "9349"
+      },
+      {
+        "price": "30065.0",
+        "size": "1895",
+        "culmulativeTotal": "6687"
+      },
+      {
+        "price": "30064.0",
+        "size": "1986",
+        "culmulativeTotal": "4792"
+      },
+      {
+        "price": "30062.5",
+        "size": "2143",
+        "culmulativeTotal": "2806"
+      },
+      {
+        "price": "30062.0",
+        "size": "333",
+        "culmulativeTotal": "663"
+      },
+      {
+        "price": "30051.5",
+        "size": "199",
+        "culmulativeTotal": "330"
+      },
+      {
+        "price": "30046.5",
+        "size": "131",
+        "culmulativeTotal": "131"
+      }
+    ],
+    "lastPrice": "30046.5",
+    "timestamp": 1654780182649,
+    "gain": -1,
+    "symbol": "BTCPFC"
+  }
+}
