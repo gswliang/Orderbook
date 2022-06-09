@@ -1,25 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./app.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const ORDER_BOOK_API = "https://api.btse.com/futures/api/v2.1/orderbook/L2";
+  return <div className="order-book-container">Hello world</div>;
+};
 
 export default App;
