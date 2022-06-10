@@ -6,15 +6,30 @@ import "./last-price.css";
 const Lastprice = ({ lastPrice, gain }) => {
   const [price, setPrice] = useState(null);
   const [icon, setIcon] = useState("");
+  const [backgroundColor, setBackgroundColor] = useState("");
+  const stateMap = {
+    0: { icon: "", background: "" },
+    1: { icon: "arrow_upward", background: "#00b15d" },
+    "-1": { icon: "arrow-downward", background: "#FF5B5A" },
+  };
+
+  //   const background = {backgroundColor:}
 
   useEffect(() => {
-    if (!lastPrice || !gain) {
+    if (!lastPrice) {
       return;
     }
-    setIcon(gain === "-1" ? "arrow-down" : "arrow-up");
+
+    setIcon(stateMap[gain].icon);
+    setBackgroundColor(stateMap[gain].background);
     setPrice(numberFormat(lastPrice));
   }, [lastPrice]);
-  return <div className="Last-price">{price}</div>;
+  return (
+    <div className="Last-price" style={{ backgroundColor: backgroundColor }}>
+      {price}
+      <span className="material-symbols-outlined icon">{icon}</span>
+    </div>
+  );
 };
 
 export default Lastprice;

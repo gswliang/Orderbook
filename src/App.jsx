@@ -11,7 +11,7 @@ const App = () => {
   const [orders, setOrders] = useState();
 
   useEffect(() => {
-    // const subscribe = { op: "subscribe", args: ["orderBook:BTCPFC_0"] };
+    const subscribe = { op: "subscribe", args: ["orderBook:BTCPFC_0"] };
 
     setOrders(data.data);
 
@@ -21,6 +21,7 @@ const App = () => {
     // };
     // webSocket.onmessage = (event) => {
     //   const result = JSON.parse(event.data);
+    //   setOrders(result.data);
     //   console.log(result);
     // };
 
@@ -32,7 +33,7 @@ const App = () => {
     // };
 
     return () => {
-      // webSocket.close();
+      webSocket.close();
     };
   }, [orders]);
 

@@ -7,5 +7,9 @@
   align-items: center;
   font-weight: 700;
   font-size: 18px;
-  background-color: tomato;
+}
+
+.icon {
+  margin: 0 10px;
+  font-weight: 700;
 }
