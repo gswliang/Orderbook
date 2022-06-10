@@ -21,13 +21,13 @@ const Quote = ({ quote, type }) => {
   return (
     <div className="quote">
       <table>
-        <thead>
+        {/* <thead>
           <tr>
             <th>Price(USD)</th>
             <th>Size</th>
             <th>Total</th>
           </tr>
-        </thead>
+        </thead> */}
         <tbody>{quoteData}</tbody>
       </table>
     </div>

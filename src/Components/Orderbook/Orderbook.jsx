@@ -5,10 +5,14 @@ import "./orderbook.css";
 
 const Orderbook = ({ orders }) => {
   const MAX_QUOTE_SIZE = 8;
+
   const [buyQuotes, setBuyQuotes] = useState([]);
   const [sellQuotes, setSellQuotes] = useState([]);
   const [lastPrice, setLastPrice] = useState("");
   const [gain, setGain] = useState("");
+  const quoteHeader = ["Price(USD)", "Size", "Total"].map((header) => {
+    return <div key={header}>{header}</div>;
+  });
 
   const buyQuoteCalculation = () => {
     let total = 0;
@@ -42,8 +46,10 @@ const Orderbook = ({ orders }) => {
 
   return (
     <div className="orderbook">
-      <Quote quote={buyQuotes} type="buy" />
+      <div className="table-header">{quoteHeader}</div>
+      <Quote quote={sellQuotes} type="sell" />
       <Lastprice lastPrice={lastPrice} gain={gain} />
+      <Quote quote={buyQuotes} type="buy" />
     </div>
   );
 };
