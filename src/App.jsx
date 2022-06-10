@@ -13,30 +13,24 @@ const App = () => {
   useEffect(() => {
     const subscribe = { op: "subscribe", args: ["orderBook:BTCPFC_0"] };
 
-    setOrders(data.data);
+    // setOrders(data.data);
 
-    // webSocket.onopen = () => {
-    //   webSocket.send(JSON.stringify(subscribe));
-    //   console.log("Connecting open!");
-    // };
-    // webSocket.onmessage = (event) => {
-    //   const result = JSON.parse(event.data);
-    //   setOrders(result.data);
-    // };
-
-    // webSocket.onclose = () => {
-    //   console.log("Connection Closed");
-    // };
-    // webSocket.onerror = (err) => {
-    //   console.log("Connection error: ", err);
-    // };
-  }, [orders]);
-
-  useEffect(() => {
-    return () => {
-      webSocket.close();
+    webSocket.onopen = () => {
+      webSocket.send(JSON.stringify(subscribe));
+      console.log("Connecting open!");
     };
-  }, []);
+    webSocket.onmessage = (event) => {
+      const result = JSON.parse(event.data);
+      setOrders(result.data);
+    };
+
+    webSocket.onclose = () => {
+      console.log("Connection Closed");
+    };
+    webSocket.onerror = (err) => {
+      console.log("Connection error: ", err);
+    };
+  }, [orders]);
 
   return (
     <div className="app">
