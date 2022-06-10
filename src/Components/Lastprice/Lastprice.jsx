@@ -10,10 +10,8 @@ const Lastprice = ({ lastPrice, gain }) => {
   const stateMap = {
     0: { icon: "", background: "" },
     1: { icon: "arrow_upward", background: "#00b15d" },
-    "-1": { icon: "arrow-downward", background: "#FF5B5A" },
+    "-1": { icon: "arrow_downward", background: "#FF5B5A" },
   };
-
-  //   const background = {backgroundColor:}
 
   useEffect(() => {
     if (!lastPrice) {

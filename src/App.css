@@ -1,13 +1,14 @@
 .app {
   margin: 2rem auto;
   width: 22rem;
-  height: 40rem;
+  height: 100%;
   background-color: #1e2c4c;
 }
 
 .app-container {
   display: flex;
   flex-direction: column;
+  padding-bottom: 1rem;
 }
 
 .title {

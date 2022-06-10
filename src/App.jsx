@@ -22,7 +22,6 @@ const App = () => {
     // webSocket.onmessage = (event) => {
     //   const result = JSON.parse(event.data);
     //   setOrders(result.data);
-    //   console.log(result);
     // };
 
     // webSocket.onclose = () => {
@@ -31,11 +30,13 @@ const App = () => {
     // webSocket.onerror = (err) => {
     //   console.log("Connection error: ", err);
     // };
+  }, [orders]);
 
+  useEffect(() => {
     return () => {
       webSocket.close();
     };
-  }, [orders]);
+  }, []);
 
   return (
     <div className="app">
