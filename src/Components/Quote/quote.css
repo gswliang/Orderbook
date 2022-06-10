@@ -4,13 +4,20 @@
   margin: 0 1.5rem;
 }
 
+table {
+  border-spacing: 0 5px;
+  width: 100%;
+  table-layout: fixed;
+}
+
 th {
   color: #8698aa;
   font-weight: 400;
-  padding: 0.5rem 0;
+  width: 25%;
 }
 
 td,
 th {
-  text-align: left;
+  text-align: right;
+  line-height: 1.5rem;
 }
