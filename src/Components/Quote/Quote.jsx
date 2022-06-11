@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import ReactTooltip from "react-tooltip";
 import numberFormat from "../../util";
 import "./quote.css";
 
@@ -37,23 +38,37 @@ const Quote = ({ quote, type }) => {
     quoteItemRef.current.forEach((i) => (i.style.backgroundColor = ""));
   };
 
+  const totalPrice = () => {
+    let sum = 0;
+    quote.forEach((item) => {
+      sum += Number(item.price) * Number(item.size);
+    });
+    return sum;
+  };
+
   const quoteData = quote.map((q, index) => {
     const price = numberFormat(q.price);
     const size = numberFormat(q.size);
     const currentTotal = numberFormat(`${q.total}`);
     const accumulativeBarPercentage = (q.total / total) * 100;
+    const averageSum = numberFormat((totalPrice() / q.total).toFixed(2));
+    const totalValue = numberFormat((+q.price * +q.size).toString());
+    const tooltip = `Avg Price: ${averageSum} USD <br />Total Value: ${totalValue} USD`;
 
     return (
       <div
-        className={`quote-row `}
+        data-tip={tooltip}
+        className="quote-row"
         key={index}
         onMouseEnter={() => onMouseEnter(index)}
         onMouseLeave={onMouseLeave}
         ref={(element) => (quoteItemRef.current[index] = element)}
       >
-        <div className={`${quoteMap[type].textColor}`}>{price}</div>
-        <div>{size}</div>
-        <div className="accumulative">
+        <div className={`quote-row-item ${quoteMap[type].textColor}`}>
+          {price}
+        </div>
+        <div className="quote-row-item">{size}</div>
+        <div className="quote-row-item  accumulative">
           <div> {currentTotal}</div>
           <div
             className={`accumulative-shadow ${quoteMap[type].backgroundColor}`}
@@ -62,6 +77,13 @@ const Quote = ({ quote, type }) => {
             }}
           ></div>
         </div>
+        <ReactTooltip
+          place="right"
+          className="tooltip"
+          effect="solid"
+          multiline={true}
+          backgroundColor="#57626e"
+        />
       </div>
     );
   });

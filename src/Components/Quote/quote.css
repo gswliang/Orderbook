@@ -5,13 +5,14 @@
 }
 
 .quote-row {
+  position: relative;
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: space-between;
 }
 
-.quote-row > div {
+.quote-row-item {
   line-height: 1.75rem;
   width: 100%;
   text-align: right;
@@ -57,4 +58,15 @@
 
 .flash-red {
   background-color: rgba(255, 91, 90, 0.5);
+}
+
+.tooltip {
+  width: 220px !important;
+  padding: 8px 12px !important;
+}
+
+.tooltip > .multi-line {
+  text-align: left !important;
+  font-size: 14px !important;
+  font-weight: 700;
 }
