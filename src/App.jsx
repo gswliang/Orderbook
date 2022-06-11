@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Orderbook from "./Components/Orderbook/Orderbook";
 import data from "./test.json";
 import "./app.css";
@@ -6,7 +6,7 @@ import "./app.css";
 const App = () => {
   const ORDER_BOOK_WEBSOCKET_URL = "wss://ws.btse.com/ws/futures";
 
-  const webSocket = new WebSocket(ORDER_BOOK_WEBSOCKET_URL);
+  const ws = new WebSocket(ORDER_BOOK_WEBSOCKET_URL);
 
   const [orders, setOrders] = useState();
 
@@ -15,22 +15,22 @@ const App = () => {
 
     // setOrders(data.data);
 
-    webSocket.onopen = () => {
-      webSocket.send(JSON.stringify(subscribe));
+    ws.onopen = () => {
+      ws.send(JSON.stringify(subscribe));
       console.log("Connecting open!");
     };
-    webSocket.onmessage = (event) => {
+    ws.onmessage = (event) => {
       const result = JSON.parse(event.data);
       setOrders(result.data);
     };
 
-    webSocket.onclose = () => {
+    ws.onclose = () => {
       console.log("Connection Closed");
     };
-    webSocket.onerror = (err) => {
+    ws.onerror = (err) => {
       console.log("Connection error: ", err);
     };
-  }, [orders]);
+  }, []);
 
   return (
     <div className="app">
