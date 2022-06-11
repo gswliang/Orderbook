@@ -9,18 +9,20 @@ const Quote = ({ quote, type }) => {
       textColor: "sell-text",
       backgroundColor: "sell-quote",
       totalIndex: 0,
+      rowFlashClass: "flash-red",
     },
     buy: {
       textColor: "buy-text",
       backgroundColor: "buy-quote",
       totalIndex: quote.length - 1,
+      rowFlashClass: "flash-green",
     },
   };
 
   const [total, setTotal] = useState(null);
   const quoteItemRef = useRef([]);
   const prevQuote = useRef();
-  const flashClass = type === "sell" ? "flash-green" : "flash-red";
+  const flashClass = quoteMap[type].rowFlashClass;
 
   const onMouseEnter = (index) => {
     if (type === "sell") {
@@ -52,6 +54,21 @@ const Quote = ({ quote, type }) => {
     return oldQuote ? currentRow.price !== oldQuote.quote[index].price : false;
   };
 
+  const handleSize = (currentRow, index) => {
+    const oldQuote = prevQuote.current;
+
+    if (!oldQuote) {
+      return;
+    }
+
+    const result = Number(currentRow.size) - Number(oldQuote.quote[index].size);
+
+    if (result === 0) {
+      return "";
+    }
+    return result > 0 ? "flash-red" : "flash-green";
+  };
+
   const quoteData = quote.map((q, index) => {
     const price = numberFormat(q.price);
     const size = numberFormat(q.size);
@@ -61,20 +78,21 @@ const Quote = ({ quote, type }) => {
     const totalValue = numberFormat((+q.price * +q.size).toString());
     const tooltip = `Avg Price: ${averageSum} USD <br />Total Value: ${totalValue} USD`;
     const flashValue = flash(q, index);
+    const sizeClass = handleSize(q, index);
 
     return (
       <div
         data-tip={tooltip}
-        className={`quote-row ${flashValue ? flashClass : ""}`}
         key={index}
         onMouseEnter={() => onMouseEnter(index)}
         onMouseLeave={onMouseLeave}
+        className={`quote-row ${flashValue ? flashClass : ""}`}
         ref={(element) => (quoteItemRef.current[index] = element)}
       >
         <div className={`quote-row-item ${quoteMap[type].textColor}`}>
           {price}
         </div>
-        <div className="quote-row-item">{size}</div>
+        <div className={`quote-row-item ${sizeClass}`}>{size}</div>
         <div className="quote-row-item  accumulative">
           <div> {currentTotal}</div>
           <div
