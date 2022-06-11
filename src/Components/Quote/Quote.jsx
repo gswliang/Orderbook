@@ -19,8 +19,8 @@ const Quote = ({ quote, type }) => {
 
   const [total, setTotal] = useState(null);
   const quoteItemRef = useRef([]);
-
-  // const [oldQuote, setOldQuote] = useState([]);
+  const prevQuote = useRef();
+  const flashClass = type === "sell" ? "flash-green" : "flash-red";
 
   const onMouseEnter = (index) => {
     if (type === "sell") {
@@ -46,6 +46,12 @@ const Quote = ({ quote, type }) => {
     return sum;
   };
 
+  const flash = (currentRow, index) => {
+    const oldQuote = prevQuote.current;
+
+    return oldQuote ? currentRow.price !== oldQuote.quote[index].price : false;
+  };
+
   const quoteData = quote.map((q, index) => {
     const price = numberFormat(q.price);
     const size = numberFormat(q.size);
@@ -54,11 +60,12 @@ const Quote = ({ quote, type }) => {
     const averageSum = numberFormat((totalPrice() / q.total).toFixed(2));
     const totalValue = numberFormat((+q.price * +q.size).toString());
     const tooltip = `Avg Price: ${averageSum} USD <br />Total Value: ${totalValue} USD`;
+    const flashValue = flash(q, index);
 
     return (
       <div
         data-tip={tooltip}
-        className="quote-row"
+        className={`quote-row ${flashValue ? flashClass : ""}`}
         key={index}
         onMouseEnter={() => onMouseEnter(index)}
         onMouseLeave={onMouseLeave}
@@ -96,6 +103,10 @@ const Quote = ({ quote, type }) => {
     const total = quote[totalIndex].total;
 
     setTotal(total);
+
+    return () => {
+      prevQuote.current = { quote, type };
+    };
   }, [quote]);
 
   return <div className="quote">{quoteData}</div>;
