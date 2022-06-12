@@ -14,7 +14,6 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  z-index: 2;
 }
 
 .quote-row-item {
@@ -29,17 +28,12 @@
 
 .accumulative {
   position: relative;
-  z-index: 1;
 }
 
 .accumulative-shadow {
   position: absolute;
   height: 100%;
   top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -1;
 }
 
 .sell-text {

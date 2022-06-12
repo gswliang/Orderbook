@@ -4,7 +4,11 @@ import "./quote.css";
 
 const Quote = ({ quote, type }) => {
   const [total, setTotal] = useState(null);
+
   const quoteItemRef = useRef([]);
+  const prevQuote = useRef();
+  const hoverIndex = useRef(null);
+
   const quoteSettings = {
     sell: {
       textColor: "sell-text",
@@ -22,7 +26,6 @@ const Quote = ({ quote, type }) => {
     },
   };
   const totalIndex = quoteSettings[type].mainTotalIndex;
-  const prevQuote = useRef();
   const flashClass = quoteSettings[type].rowFlashClass;
 
   const handleHoverBackgroundColor = (index, color) => {
@@ -42,6 +45,8 @@ const Quote = ({ quote, type }) => {
       minIndex++;
       maxIndex--;
     }
+
+    hoverIndex.current = index;
   };
 
   const onMouseLeave = () => {
@@ -54,6 +59,20 @@ const Quote = ({ quote, type }) => {
       minIndex++;
       maxIndex--;
     }
+
+    hoverIndex.current = null;
+  };
+
+  const handleHasRowBackgroundColor = (currentIndex) => {
+    if (hoverIndex.current === null) {
+      return false;
+    }
+
+    const quoteTypeIndex = quoteSettings[type].quoteStartingIndex;
+    let maxIndex = Math.max(hoverIndex.current, quoteTypeIndex);
+    let minIndex = Math.min(hoverIndex.current, quoteTypeIndex);
+
+    return minIndex <= currentIndex && currentIndex <= maxIndex;
   };
 
   const sumProduct = (index) => {
@@ -89,12 +108,16 @@ const Quote = ({ quote, type }) => {
     const price = numberFormat(q.price);
     const size = numberFormat(q.size);
     const currentTotal = numberFormat(q.total);
-    const accumulativeBar = (q.total / total) * 100;
     const averageSum = numberFormat((sumProduct(index) / q.total).toFixed(2));
     const totalValue = numberFormat(sumProduct(index));
+
+    const accumulativeBar = (q.total / total) * 100;
     const tooltipData = `Avg Price: ${averageSum} USD \n Total Value: ${totalValue} USD`;
-    const isFlash = handleRowFlash(q, index);
-    const sizeClass = handleSizeChangedDisplay(q, index);
+    const hasBackgroundColor = handleHasRowBackgroundColor(index);
+    const isFlash = !hasBackgroundColor && handleRowFlash(q, index);
+    const sizeClass = hasBackgroundColor
+      ? ""
+      : handleSizeChangedDisplay(q, index);
 
     return (
       <div
