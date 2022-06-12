@@ -8,13 +8,15 @@ const Quote = ({ quote, type }) => {
     sell: {
       textColor: "sell-text",
       backgroundColor: "sell-quote",
-      totalIndex: 0,
+      mainTotalIndex: 0,
+      quoteStartingIndex: quote.length - 1,
       rowFlashClass: "flash-red",
     },
     buy: {
       textColor: "buy-text",
       backgroundColor: "buy-quote",
-      totalIndex: quote.length - 1,
+      mainTotalIndex: quote.length - 1,
+      quoteStartingIndex: 0,
       rowFlashClass: "flash-green",
     },
   };
@@ -24,20 +26,34 @@ const Quote = ({ quote, type }) => {
   const prevQuote = useRef();
   const flashClass = quoteMap[type].rowFlashClass;
 
+  const handleHoverBackgroundColor = (index, color) => {
+    quoteItemRef.current[index].style.backgroundColor = color;
+  };
+
   const onMouseEnter = (index) => {
-    if (type === "sell") {
-      for (let i = index; i < quote.length; i++) {
-        quoteItemRef.current[i].style.backgroundColor = "#334573";
-      }
-    } else {
-      for (let i = 0; i < index; i++) {
-        quoteItemRef.current[i].style.backgroundColor = "#334573";
-      }
+    let maxIndex = Math.max(index, quoteMap[type].quoteStartingIndex);
+    let minIndex = Math.min(index, quoteMap[type].quoteStartingIndex);
+    const bgColorOnHover = "#334573";
+
+    while (minIndex <= maxIndex) {
+      handleHoverBackgroundColor(minIndex, bgColorOnHover);
+      handleHoverBackgroundColor(maxIndex, bgColorOnHover);
+
+      minIndex++;
+      maxIndex--;
     }
   };
 
   const onMouseLeave = () => {
-    quoteItemRef.current.forEach((i) => (i.style.backgroundColor = ""));
+    let minIndex = 0;
+    let maxIndex = quoteItemRef.current.length - 1;
+
+    while (minIndex <= maxIndex) {
+      handleHoverBackgroundColor(minIndex, "");
+      handleHoverBackgroundColor(maxIndex, "");
+      minIndex++;
+      maxIndex--;
+    }
   };
 
   const totalPrice = () => {
@@ -73,7 +89,7 @@ const Quote = ({ quote, type }) => {
     const price = numberFormat(q.price);
     const size = numberFormat(q.size);
     const currentTotal = numberFormat(`${q.total}`);
-    const accumulativeBarPercentage = (q.total / total) * 100;
+    const accumulativeBar = (q.total / total) * 100;
     const averageSum = numberFormat((totalPrice() / q.total).toFixed(2));
     const totalValue = numberFormat((+q.price * +q.size).toString());
     const tooltip = `Avg Price: ${averageSum} USD <br />Total Value: ${totalValue} USD`;
@@ -86,7 +102,7 @@ const Quote = ({ quote, type }) => {
         key={index}
         onMouseEnter={() => onMouseEnter(index)}
         onMouseLeave={onMouseLeave}
-        className={`quote-row ${flashValue ? flashClass : ""}`}
+        className={`quote-row  ${flashValue ? flashClass : ""}`}
         ref={(element) => (quoteItemRef.current[index] = element)}
       >
         <div className={`quote-row-item ${quoteMap[type].textColor}`}>
@@ -98,7 +114,7 @@ const Quote = ({ quote, type }) => {
           <div
             className={`accumulative-shadow ${quoteMap[type].backgroundColor}`}
             style={{
-              width: `${accumulativeBarPercentage}%`,
+              width: `${accumulativeBar}%`,
             }}
           ></div>
         </div>
@@ -117,7 +133,7 @@ const Quote = ({ quote, type }) => {
     if (!quote.length) {
       return;
     }
-    const totalIndex = quoteMap[type].totalIndex;
+    const totalIndex = quoteMap[type].mainTotalIndex;
     const total = quote[totalIndex].total;
 
     setTotal(total);

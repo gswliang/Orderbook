@@ -10,6 +10,7 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  z-index: 2;
 }
 
 .quote-row-item {
@@ -19,6 +20,7 @@
   font-weight: 700;
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
 }
 
 .accumulative {
