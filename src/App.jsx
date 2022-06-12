@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Orderbook from "./Components/Orderbook/Orderbook";
 // import data from "./test.json";
-import "./app.css";
+import "./App.css";
 
 const App = () => {
   const ORDER_BOOK_WEBSOCKET_URL = "wss://ws.btse.com/ws/futures";

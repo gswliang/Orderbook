@@ -64,7 +64,7 @@ const Quote = ({ quote, type }) => {
     return sum;
   };
 
-  const flash = (currentRow, index) => {
+  const handleRowFlash = (currentRow, index) => {
     const oldQuote = prevQuote.current;
 
     return oldQuote ? currentRow.price !== oldQuote.quote[index].price : false;
@@ -93,7 +93,7 @@ const Quote = ({ quote, type }) => {
     const averageSum = numberFormat((sumProduct(index) / q.total).toFixed(2));
     const totalValue = numberFormat(sumProduct(index));
     const tooltipData = `Avg Price: ${averageSum} USD \n Total Value: ${totalValue} USD`;
-    const flashValue = flash(q, index);
+    const isFlash = handleRowFlash(q, index);
     const sizeClass = handleSize(q, index);
 
     return (
@@ -102,7 +102,7 @@ const Quote = ({ quote, type }) => {
         key={index}
         onMouseEnter={() => onMouseEnter(index)}
         onMouseLeave={onMouseLeave}
-        className={`quote-row tooltip ${flashValue ? flashClass : ""}`}
+        className={`quote-row tooltip ${isFlash ? flashClass : ""}`}
         ref={(element) => (quoteItemRef.current[index] = element)}
       >
         <div className={`quote-row-item ${quoteSettings[type].textColor}`}>
