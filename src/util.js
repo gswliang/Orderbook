@@ -1,5 +1,6 @@
 const numberFormat = (value) => {
-  return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const stringValue = value.toString();
+  return stringValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
 export default numberFormat;

@@ -55,11 +55,11 @@ const Quote = ({ quote, type }) => {
     }
   };
 
-  const totalPrice = () => {
+  const sumProduct = (index) => {
     let sum = 0;
-    quote.forEach((item) => {
-      sum += Number(item.price) * Number(item.size);
-    });
+    for (let i = index; i < quote.length; i++) {
+      sum += Number(quote[index].price) * Number(quote[index].size);
+    }
     return sum;
   };
 
@@ -87,17 +87,17 @@ const Quote = ({ quote, type }) => {
   const quoteData = quote.map((q, index) => {
     const price = numberFormat(q.price);
     const size = numberFormat(q.size);
-    const currentTotal = numberFormat(`${q.total}`);
+    const currentTotal = numberFormat(q.total);
     const accumulativeBar = (q.total / total) * 100;
-    const averageSum = numberFormat((totalPrice() / q.total).toFixed(2));
-    const totalValue = numberFormat((+q.price * +q.size).toString());
-    const tooltip = `Avg Price: ${averageSum} USD \n Total Value: ${totalValue} USD`;
+    const averageSum = numberFormat((sumProduct(index) / q.total).toFixed(2));
+    const totalValue = numberFormat(sumProduct(index));
+    const tooltipData = `Avg Price: ${averageSum} USD \n Total Value: ${totalValue} USD`;
     const flashValue = flash(q, index);
     const sizeClass = handleSize(q, index);
 
     return (
       <div
-        tooltip-data={tooltip}
+        tooltip-data={tooltipData}
         key={index}
         onMouseEnter={() => onMouseEnter(index)}
         onMouseLeave={onMouseLeave}
