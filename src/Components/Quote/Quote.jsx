@@ -70,7 +70,7 @@ const Quote = ({ quote, type }) => {
     return oldQuote ? currentRow.price !== oldQuote.quote[index].price : false;
   };
 
-  const handleSize = (currentRow, index) => {
+  const handleSizeChangedDisplay = (currentRow, index) => {
     const oldQuote = prevQuote.current;
 
     if (!oldQuote) {
@@ -94,7 +94,7 @@ const Quote = ({ quote, type }) => {
     const totalValue = numberFormat(sumProduct(index));
     const tooltipData = `Avg Price: ${averageSum} USD \n Total Value: ${totalValue} USD`;
     const isFlash = handleRowFlash(q, index);
-    const sizeClass = handleSize(q, index);
+    const sizeClass = handleSizeChangedDisplay(q, index);
 
     return (
       <div
