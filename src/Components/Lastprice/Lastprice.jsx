@@ -7,21 +7,22 @@ const Lastprice = ({ lastPrice, gain }) => {
   const [price, setPrice] = useState(null);
   const [icon, setIcon] = useState("");
   const [backgroundColor, setBackgroundColor] = useState("");
-  const stateMap = {
-    0: { icon: "", background: "" },
-    1: { icon: "arrow_upward", background: "#00b15d" },
-    "-1": { icon: "arrow_downward", background: "#FF5B5A" },
-  };
 
   useEffect(() => {
     if (!lastPrice) {
       return;
     }
 
+    const stateMap = {
+      0: { icon: "", background: "" },
+      1: { icon: "arrow_upward", background: "#00b15d" },
+      "-1": { icon: "arrow_downward", background: "#FF5B5A" },
+    };
+
     setIcon(stateMap[gain].icon);
     setBackgroundColor(stateMap[gain].background);
     setPrice(numberFormat(lastPrice));
-  }, [lastPrice]);
+  }, [lastPrice, gain]);
   return (
     <div className="Last-price" style={{ backgroundColor: backgroundColor }}>
       {price}

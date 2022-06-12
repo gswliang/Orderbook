@@ -3,7 +3,9 @@ import numberFormat from "../../util";
 import "./quote.css";
 
 const Quote = ({ quote, type }) => {
-  const quoteMap = {
+  const [total, setTotal] = useState(null);
+  const quoteItemRef = useRef([]);
+  const quoteSettings = {
     sell: {
       textColor: "sell-text",
       backgroundColor: "sell-quote",
@@ -19,20 +21,19 @@ const Quote = ({ quote, type }) => {
       rowFlashClass: "flash-green",
     },
   };
-
-  const [total, setTotal] = useState(null);
-  const quoteItemRef = useRef([]);
+  const totalIndex = quoteSettings[type].mainTotalIndex;
   const prevQuote = useRef();
-  const flashClass = quoteMap[type].rowFlashClass;
+  const flashClass = quoteSettings[type].rowFlashClass;
 
   const handleHoverBackgroundColor = (index, color) => {
     quoteItemRef.current[index].style.backgroundColor = color;
   };
 
   const onMouseEnter = (index) => {
-    let maxIndex = Math.max(index, quoteMap[type].quoteStartingIndex);
-    let minIndex = Math.min(index, quoteMap[type].quoteStartingIndex);
+    const quoteTypeIndex = quoteSettings[type].quoteStartingIndex;
     const bgColorOnHover = "#334573";
+    let maxIndex = Math.max(index, quoteTypeIndex);
+    let minIndex = Math.min(index, quoteTypeIndex);
 
     while (minIndex <= maxIndex) {
       handleHoverBackgroundColor(minIndex, bgColorOnHover);
@@ -104,14 +105,14 @@ const Quote = ({ quote, type }) => {
         className={`quote-row tooltip ${flashValue ? flashClass : ""}`}
         ref={(element) => (quoteItemRef.current[index] = element)}
       >
-        <div className={`quote-row-item ${quoteMap[type].textColor}`}>
+        <div className={`quote-row-item ${quoteSettings[type].textColor}`}>
           {price}
         </div>
         <div className={`quote-row-item ${sizeClass}`}>{size}</div>
         <div className="quote-row-item  accumulative">
           <div> {currentTotal}</div>
           <div
-            className={`accumulative-shadow ${quoteMap[type].backgroundColor}`}
+            className={`accumulative-shadow ${quoteSettings[type].backgroundColor}`}
             style={{
               width: `${accumulativeBar}%`,
             }}
@@ -125,15 +126,15 @@ const Quote = ({ quote, type }) => {
     if (!quote.length) {
       return;
     }
-    const totalIndex = quoteMap[type].mainTotalIndex;
+
     const total = quote[totalIndex].total;
 
     setTotal(total);
 
     return () => {
-      prevQuote.current = { quote, type };
+      prevQuote.current = { quote };
     };
-  }, [quote]);
+  }, [quote, totalIndex]);
 
   return <div className="quote">{quoteData}</div>;
 };

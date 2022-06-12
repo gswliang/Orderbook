@@ -14,7 +14,7 @@ const Orderbook = ({ orders }) => {
     return <div key={header}>{header}</div>;
   });
 
-  const buyQuoteCalculation = () => {
+  const buyQuoteCalculation = (orders) => {
     let total = 0;
     return orders.buyQuote.slice(0, MAX_QUOTE_SIZE).map((quote) => {
       total += parseInt(quote.size);
@@ -22,7 +22,7 @@ const Orderbook = ({ orders }) => {
     });
   };
 
-  const sellQuoteCalculation = () => {
+  const sellQuoteCalculation = (orders) => {
     let total = 0;
     return orders.sellQuote
       .slice(-MAX_QUOTE_SIZE)
@@ -38,8 +38,9 @@ const Orderbook = ({ orders }) => {
     if (!orders) {
       return;
     }
-    setBuyQuotes(buyQuoteCalculation());
-    setSellQuotes(sellQuoteCalculation());
+
+    setBuyQuotes(buyQuoteCalculation(orders));
+    setSellQuotes(sellQuoteCalculation(orders));
     setGain(orders.gain);
     setLastPrice(orders.lastPrice);
   }, [orders]);
