@@ -92,17 +92,17 @@ const Quote = ({ quote, type }) => {
     const accumulativeBar = (q.total / total) * 100;
     const averageSum = numberFormat((totalPrice() / q.total).toFixed(2));
     const totalValue = numberFormat((+q.price * +q.size).toString());
-    const tooltip = `Avg Price: ${averageSum} USD <br />Total Value: ${totalValue} USD`;
+    const tooltip = `Avg Price: ${averageSum} USD \n Total Value: ${totalValue} USD`;
     const flashValue = flash(q, index);
     const sizeClass = handleSize(q, index);
 
     return (
       <div
-        data-tip={tooltip}
+        tooltip-data={tooltip}
         key={index}
         onMouseEnter={() => onMouseEnter(index)}
         onMouseLeave={onMouseLeave}
-        className={`quote-row  ${flashValue ? flashClass : ""}`}
+        className={`quote-row tooltip ${flashValue ? flashClass : ""}`}
         ref={(element) => (quoteItemRef.current[index] = element)}
       >
         <div className={`quote-row-item ${quoteMap[type].textColor}`}>
@@ -118,13 +118,6 @@ const Quote = ({ quote, type }) => {
             }}
           ></div>
         </div>
-        <ReactTooltip
-          place="right"
-          className="tooltip"
-          effect="solid"
-          multiline={true}
-          backgroundColor="#57626e"
-        />
       </div>
     );
   });

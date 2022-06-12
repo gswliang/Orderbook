@@ -1,3 +1,7 @@
+:root {
+  --tooltip-arrow-gap: 24px;
+}
+
 .quote {
   display: flex;
   flex-direction: column;
@@ -62,15 +66,43 @@
   animation: flashRed 0.3s ease-in-out;
 }
 
-.tooltip {
-  width: 220px !important;
-  padding: 8px 12px !important;
+.tooltip:hover::before,
+.tooltip:hover::after {
+  display: inline-block;
 }
 
-.tooltip > .multi-line {
-  text-align: left !important;
-  font-size: 14px !important;
+.tooltip::before {
+  position: absolute;
+  z-index: 2;
+  width: 13rem;
+  height: 3.75rem;
+  padding: 10px;
+  font-size: 12px;
+  line-height: 1.75rem;
+  border-radius: 5px;
   font-weight: 700;
+  white-space: pre-line;
+  background-color: #57626e;
+  display: none;
+  color: #ffffff;
+  content: attr(tooltip-data);
+
+  left: calc(100% + 10px);
+  transform: translateX(10%);
+}
+
+.tooltip::after {
+  position: absolute;
+  z-index: 1;
+  display: none;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  content: "";
+  border-right-color: #57626e;
+  border-left-width: 0;
+
+  left: calc(100% + var(--tooltip-arrow-gap));
 }
 
 @keyframes flashRed {
