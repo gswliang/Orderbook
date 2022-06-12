@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import ReactTooltip from "react-tooltip";
 import numberFormat from "../../util";
 import "./quote.css";
 
