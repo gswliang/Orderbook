@@ -27,6 +27,8 @@ const Quote = ({ quote, type }) => {
   };
   const totalIndex = quoteSettings[type].mainTotalIndex;
   const flashClass = quoteSettings[type].rowFlashClass;
+  const textColor = quoteSettings[type].textColor;
+  const accumulativeBarBgColor = quoteSettings[type].backgroundColor;
 
   const handleHoverBackgroundColor = (index, color) => {
     quoteItemRef.current[index].style.backgroundColor = color;
@@ -69,17 +71,22 @@ const Quote = ({ quote, type }) => {
     }
 
     const quoteTypeIndex = quoteSettings[type].quoteStartingIndex;
-    let maxIndex = Math.max(hoverIndex.current, quoteTypeIndex);
-    let minIndex = Math.min(hoverIndex.current, quoteTypeIndex);
+    const maxIndex = Math.max(hoverIndex.current, quoteTypeIndex);
+    const minIndex = Math.min(hoverIndex.current, quoteTypeIndex);
 
     return minIndex <= currentIndex && currentIndex <= maxIndex;
   };
 
   const sumProduct = (index) => {
+    const quoteTypeIndex = quoteSettings[type].quoteStartingIndex;
+    const maxIndex = Math.max(index, quoteTypeIndex) + 1;
+    const minIndex = Math.min(index, quoteTypeIndex);
+    const quoteSlice = quote.slice(minIndex, maxIndex);
     let sum = 0;
-    for (let i = index; i < quote.length; i++) {
-      sum += Number(quote[index].price) * Number(quote[index].size);
-    }
+
+    quoteSlice.forEach(
+      (item) => (sum += Number(item.price) * Number(item.size))
+    );
     return sum;
   };
 
@@ -108,10 +115,9 @@ const Quote = ({ quote, type }) => {
     const price = numberFormat(q.price);
     const size = numberFormat(q.size);
     const currentTotal = numberFormat(q.total);
-    const averageSum = numberFormat((sumProduct(index) / q.total).toFixed(2));
-    const totalValue = numberFormat(sumProduct(index));
-
     const accumulativeBar = (q.total / total) * 100;
+    const averageSum = numberFormat((sumProduct(index) / total).toFixed(2));
+    const totalValue = numberFormat(sumProduct(index));
     const tooltipData = `Avg Price: ${averageSum} USD \n Total Value: ${totalValue} USD`;
     const hasBackgroundColor = handleHasRowBackgroundColor(index);
     const isFlash = !hasBackgroundColor && handleRowFlash(q, index);
@@ -128,14 +134,12 @@ const Quote = ({ quote, type }) => {
         className={`quote-row tooltip ${isFlash ? flashClass : ""}`}
         ref={(element) => (quoteItemRef.current[index] = element)}
       >
-        <div className={`quote-row-item ${quoteSettings[type].textColor}`}>
-          {price}
-        </div>
+        <div className={`quote-row-item ${textColor}`}>{price}</div>
         <div className={`quote-row-item ${sizeClass}`}>{size}</div>
         <div className="quote-row-item  accumulative">
           <div> {currentTotal}</div>
           <div
-            className={`accumulative-shadow ${quoteSettings[type].backgroundColor}`}
+            className={`accumulative-shadow ${accumulativeBarBgColor}`}
             style={{
               width: `${accumulativeBar}%`,
             }}

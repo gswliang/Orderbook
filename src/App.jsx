@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Orderbook from "./Components/Orderbook/Orderbook";
-// import data from "./test.json";
 import "./App.css";
 
 const App = () => {
@@ -11,8 +10,6 @@ const App = () => {
   useEffect(() => {
     const ws = new WebSocket(ORDER_BOOK_WEBSOCKET_URL);
     const subscribe = { op: "subscribe", args: ["orderBook:BTCPFC_0"] };
-
-    // setOrders(data.data);
 
     ws.onopen = () => {
       ws.send(JSON.stringify(subscribe));
