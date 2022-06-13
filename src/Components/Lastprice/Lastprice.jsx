@@ -15,8 +15,8 @@ const Lastprice = ({ lastPrice, gain }) => {
 
     const stateMap = {
       0: { icon: "", background: "" },
-      1: { icon: "arrow_upward", background: "#00b15d" },
-      "-1": { icon: "arrow_downward", background: "#FF5B5A" },
+      1: { icon: "arrow_upward", background: "rgba(16, 186, 104, 0.12)" },
+      "-1": { icon: "arrow_downward", background: "rgba(255, 90, 90, 0.12)" },
     };
 
     setIcon(stateMap[gain].icon);
