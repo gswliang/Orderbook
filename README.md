@@ -16,4 +16,4 @@ Open http://localhost:3000 with your browser to see the result.
 
 ## Deployment
 
-This site is currently deployed on Netlify, please visit: https://grace-orderbook.netlify.app/ to see the result.
+This site is currently deployed on Netlify, please visit: [Orderbook](https://orderbook-btse.netlify.app/) to see the result.
