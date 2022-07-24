@@ -65,18 +65,6 @@ const Quote = ({ quote, type }) => {
     hoverIndex.current = null;
   };
 
-  const handleHasRowBackgroundColor = (currentIndex) => {
-    if (hoverIndex.current === null) {
-      return false;
-    }
-
-    const quoteTypeIndex = quoteSettings[type].quoteStartingIndex;
-    const maxIndex = Math.max(hoverIndex.current, quoteTypeIndex);
-    const minIndex = Math.min(hoverIndex.current, quoteTypeIndex);
-
-    return minIndex <= currentIndex && currentIndex <= maxIndex;
-  };
-
   const sumProduct = (index) => {
     const quoteTypeIndex = quoteSettings[type].quoteStartingIndex;
     const maxIndex = Math.max(index, quoteTypeIndex) + 1;
@@ -119,8 +107,8 @@ const Quote = ({ quote, type }) => {
     const averageSum = numberFormat((sumProduct(index) / total).toFixed(2));
     const totalValue = numberFormat(sumProduct(index));
     const tooltipData = `Avg Price: ${averageSum} USD \n Total Value: ${totalValue} USD`;
-    const hasBackgroundColor = handleHasRowBackgroundColor(index);
-    const isFlash = !hasBackgroundColor && handleRowFlash(q, index);
+    const hasBackgroundColor = hoverIndex.current === null ? false : true;
+    const isRowFlash = !hasBackgroundColor && handleRowFlash(q, index);
     const sizeClass = hasBackgroundColor
       ? ""
       : handleSizeChangedDisplay(q, index);
@@ -131,7 +119,7 @@ const Quote = ({ quote, type }) => {
         key={index}
         onMouseEnter={() => onMouseEnter(index)}
         onMouseLeave={onMouseLeave}
-        className={`quote-row tooltip ${isFlash ? flashClass : ""}`}
+        className={`quote-row tooltip ${isRowFlash ? flashClass : ""}`}
         ref={(element) => (quoteItemRef.current[index] = element)}
       >
         <div className={`quote-row-item ${textColor}`}>{price}</div>
